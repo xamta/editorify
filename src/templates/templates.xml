@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template id="template" xml:space="preserve">
+<t t-name="viewmanager">
+    <div class="row-fluid well viewmanager">
+    <div class="btn-group span2" data-toggle="buttons-radio">             
+      <a class="btn listview active" href="#"><i class="icon-align-justify"></i></a>
+      <a class="btn formview" href="#"><i class="icon-book"></i></a>
+      <!--a class="btn" href="#"><i class="icon-th"></i></a>
+      <a class="btn active" href="#"><i class="icon-calendar"></i></a-->
+    </div>    
+  </div>
+  <div id="form" class="row-fluid well viewpanel" >                        
+  </div>
+  <div id="table"  class="row-fluid well viewpanel" >TABLE</div>
+</t>
+
+<t t-name="table">
+	<table width="100%" cellpadding="2" cellspacing="0" border="0" class="table-striped">
+	    <thead class="w_thead">
+	    <tr>
+	        <td t-attrcolspan="3+data.viewarch.field.tree.field.length">
+	            <h2><t t-esc="data.viewarch.field.tree.string"/></h2>
+	        </td>
+	    </tr>
+	    <tr>
+	        <th><input id="head_checkbox" type="checkbox" value="1" /></th>
+	        <t t-foreach="data.viewarch.field.tree.field" t-as="col">
+    			<th align="left"><t t-esc="data.modelfields_arch[col.name].field_label"/></th>
+		    </t>
+		    <th> </th>
+		    <th> </th>
+	    </tr>	
+	    </thead>
+	    <tbody class="w_tdata">	 
+	    <t t-foreach="records" t-as="record">
+	        <tr>
+	            <th><input class="chkbox" id="chk" type="checkbox" t-attr-value="record.id"/></th>
+                <t t-foreach="data.viewarch.field.tree.field" t-as="field">
+		            <td><t t-esc="record[field.name]"/></td>
+                </t>
+	            <th><a class="button edit" href="javascript:void(0);" t-attr-value="record.id"><span class="icon-pencil"/></a></th>
+			    <th><a class="button delete" href="#delete" t-attr-value="record.id"><span class="icon-trash"/></a></th>
+	        </tr>
+	    </t>
+	    </tbody>
+	    <!--tfoot class="w_tfoot">
+	        <tr><td colspan="6">
+	                <input type="button"  name="table_prevpage" value="&lt;"  />
+	                <t t-esc="data.currentpage+1"/>/100
+	                <input type="button"  name="table_nextpage" value="&gt;"  />
+	            </td>
+	        </tr>
+	    </tfoot-->
+	</table>
+</t>	
+<t t-name="form_panel">
+    <div class="row-fluid">
+        <div class="btn-group span10">
+            <h2 class="form_title"></h2>
+        </div>
+        <div class="btn-group span8">
+          <button name="save" class="save btn">Save</button>
+          <button name="create" class="btn">Create</button>
+          <button name="read" class="btn">Read</button>
+          <button name="duplicate" class="btn">Duplicate</button>
+        </div>
+        <div class="btn-group span2" > 
+           <a class="btn page_prev" href="javascript:void(0);"><i class="icon-hand-left"></i></a>
+           <a class="btn page_next" href="javascript:void(0);"><i class="icon-hand-right"></i></a>
+        </div>
+    </div>
+</t>
+
+<!-- field type char so input=text rendering -->	
+<t t-name="label">
+    <label t-if="!field.nolabel" t-att-id="'wf_label_'+option.field_id" t-att-title="option.field_help" class="wf_label"><t t-esc="option.field_label" />:</label>
+ </t>
+
+<t t-name="date">
+    <t t-call="label"/>
+    <input t-att-class="'form span field_date ' + field.class" type="text" data-date-format="yyyy-mm-dd" t-att-name="option.field_id" t-att-id="'span form_field_'+option.field_id"  t-att-placeholder="field.placeholder"/>
+</t>
+<t t-name="datetime">
+    <input t-att-class="'span form ' + field.class" type="text" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id" style="width: 100%" t-att-placeholder="field.placeholder"/>
+</t>  	
+<t t-name="char">
+    <t t-call="label"/>
+    <input type="text" t-att-class="'span form ' + field.class" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id"  t-att-placeholder="field.placeholder" style="width:100%"/>
+</t>	
+<t t-name="text">    
+    <textarea t-att-class="'span form ' + field.class" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id" t-att-placeholder="field.placeholder" style="width:100%;height:150px;" ></textarea>
+</t>
+<t t-name="boolean">
+    <t t-call="label"/>
+    <input t-att-class="'span1 form ' + field.class" type="checkbox" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id"/>
+</t>
+<t t-name="int">
+    <t t-call="label"/>
+    <input t-att-class="'span form ' + field.class" type="text" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id" style="width: 100%" />
+</t>
+<t t-name="float">
+    <t t-call="label"/>
+    <input t-att-class="'span form ' + field.class" type="text" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id" style="width: 100%" />
+</t>
+<t t-name="select">
+    <t t-call="label"/>
+    <select class="form field_select" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id" style="width: 100%">
+        <t t-js="option">
+            option.field_options = eval(option.field_options);           
+        </t>
+        <!--option value="false" t-if="field.placeholder"><t t-esc="field.placeholder"/></option-->
+        <t t-foreach="option.field_options" t-as="field">
+            <option t-att-value="_.keys(field)[0]"><t t-esc="_.values(field)[0]"/></option>
+        </t>
+    </select>    
+</t>
+<t t-name="image">
+    <t t-call="label"/>
+    <input class="form field_image" type="file" t-att-id="'field_'+option.field_id" style="width: 100%"/>
+    <img class="form"  src="libs/img/user.jpg" t-att-id="'form_field_'+option.field_id" width="200"/>
+</t>
+
+<!-- Relational fields -->
+<t t-name="one2many">
+    <input class="form" type="checkbox" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id" style="width: 100%" />
+</t>
+<t t-name="many2one">
+    <t t-call="label"/>
+    <div class="m2o_listpanel" t-att-id="option.field_id">
+        <input type="hidden" class="form" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id"/>
+        <input type="text" t-att-class="'field_m2o span form ' + field.class" t-att-name="'m20_'+option.field_id" t-att-id="'m2o_field_'+option.field_id" t-att-model="option.field_reference"/>
+        <ul t-att-id="'select_m2o_field_'+option.field_id" t-att-target="option.field_id" style="position: absolute;background-color: white;margin: 0px;list-style: none;padding: 6px;cursor: pointer;display:none;border: 1px gray solid;"></ul>
+    </div>
+</t>
+<t t-name="many2many">
+    <input class="form" type="checkbox" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id" style="width: 100%" />
+</t>
+<t t-name="progressbar">
+    <input class="form" type="checkbox" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id" style="width: 100%" />
+</t>
+<t t-name="intslider">
+    <input class="form" type="checkbox" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id" style="width: 100%" />
+</t>
+<t t-name="floatslider">
+    <input class="form" type="checkbox" t-att-name="option.field_id" t-att-id="'form_field_'+option.field_id" style="width: 100%" />
+</t>
+</template>
