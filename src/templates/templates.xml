@@ -13,4 +13,67 @@
   </div>
   <div id="table"  class="row-fluid well viewpanel" >TABLE</div>
 </t>
+
+<t t-name="left-tree">
+<div class="left-tree">
+<ul>
+    <li class="xmt-folder">Layouts</li>
+    <li>
+        <ul>
+            <li class="xmt-file">Mian.xml</li>
+        </ul>
+    </li>
+    <li class="xmt-folder">Templates</li>
+    <li>
+        <ul>
+            <li class="xmt-file">index.xml</li>
+            <li class="xmt-file">page.xml</li>
+            <li class="xmt-file">page.list.xml</li>
+            <li class="xmt-file">blog.xml</li>
+            <li class="xmt-file">blog.list.xml</li>
+            <li class="xmt-file">product.xml</li>
+            <li class="xmt-file">product.list.xml</li>
+            <li class="xmt-file">contactus.xml</li>
+        </ul>
+    </li>
+    <li class="xmt-folder">Snippets</li>
+    <li>
+        <ul>
+            <li class="xmt-file">adsblock.xml</li>
+        </ul>
+    </li>
+    <li class="xmt-folder">Sections</li>
+    <li>
+        <ul>
+            <li class="xmt-file">collections.xml</li>
+            <li class="xmt-file">product.grid.xml</li>
+            <li class="xmt-file">page.grid.xml</li>
+        </ul>
+    </li>
+    <li class="xmt-folder">Assets</li>
+    <li>
+        <ul>
+            <li class="xmt-file">style.css</li>
+            <li class="xmt-file">app.js</li>
+            <li class="xmt-file">banner.png</li>
+            <li class="xmt-file">avtar.jpeg</li>
+        </ul>
+    </li>
+</ul>
+</div>
+
+<div class="right-tree">
+
+<div id="xmt-editor">
+<span class="save">Save</span>
+<div id="xmt-editor-content">function foo(items) {
+    var x = "All this is syntax highlighted";
+    return x;
+}</div>
+</div>
+
+</div>
+
+</t>
+
 </template>

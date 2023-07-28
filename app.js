@@ -1,45 +1,32 @@
-var Workspace = Backbone.Router.extend({
-
-  routes: {
-     "": "help",
-    "help":                 "help",    // #help
-    "search/:query":        "search",  // #search/kiwis
-    "search/:query/p:page": "search"   // #search/kiwis/p7
-  },
-
-  help: function() {
-       console.log("helping is my help route");
-  },
-
-  search: function(query, page) {
-        console.log("nice to hearing you.");
-  }
-
-});
-var t =  new Workspace();
-Backbone.history.start();
-// FOR ROUTER ITS IS ESSENTIAL TO HAVE Backbone.history.start(); after initialize (like var t =  new Workspace();) then only it works well.
-
 
 var Widget = Backbone.View.extend({
+    //className: 'editorify',
     initialize: function(option){
-       console.log("widget option data: ", option || {});
-       this.render(); // render template
+        console.log("widget option data: ", option || {});
+        this.render(); // render template
+        this.editor = ace.edit("xmt-editor-content");
+        this.editor.setTheme("ace/theme/monokai");
+        this.editor.session.setMode("ace/mode/javascript");
     },
     render: function(){
-       this.$el.append("<h1>working</h1>");
-       console.log("this.el",this.el);
-       console.log("this.$el",this.$el);
+       this.$el.html(engine.render('left-tree'));
+       return this;
     },
     events: {
       "click h1": "warn",
+      "click .xmt-file": "file_selected",
+    },
+    file_selected: function(){
+         this.editor.setValue("the new text here");
+         //this.editor.session.setMode("ace/mode/css");
+         this.editor.session.setMode("ace/mode/xml");
     },
     warn: function(){
-       throw Error("Great Error Message.");
+      // throw Error("Great Error Message.");
     },
     destroy: function(){
-      this.el.remove();
-      this.unbind();
+//      this.el.remove();
+//      this.unbind();
     }
 });
 
@@ -56,7 +43,8 @@ engine.add_template('./src/templates/templates.xml', function(err) {
     } else {
         def.resolve();
          $(function() {
-           var input = new Widget();
+         
+           var input = new Widget({el:$("#editorify")});
            input.$el.appendTo($("#box1"));
           
            
@@ -65,9 +53,9 @@ engine.add_template('./src/templates/templates.xml', function(err) {
     }
 });
 
-window.onerror = function(message, url, linenumber) {
-    console.log("message: ", message);
-  alert("JavaScript error: " + message + " on line " + linenumber + " for " + url);
-}
+//window.onerror = function(message, url, linenumber) {
+//    console.log("message: ", message);
+//  alert("JavaScript error: " + message + " on line " + linenumber + " for " + url);
+//}
 
 
