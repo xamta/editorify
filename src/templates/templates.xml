@@ -17,15 +17,13 @@
 <t t-name="editorify-panel">
 <div class="left-tree">
 <ul>
-    <li class="xmt-folder">Layouts</li>
-    <li>
-        <ul>
+    <li class="xmt-folder">Layouts
+    <ul>
             <li class="xmt-file">Mian.xml</li>
-        </ul>
+    </ul>
     </li>
-    <li class="xmt-folder">Templates</li>
-    <li>
-        <ul>
+    <li class="xmt-folder">Templates
+     <ul>
             <li class="xmt-file">index.xml</li>
             <li class="xmt-file">page.xml</li>
             <li class="xmt-file">page.list.xml</li>
@@ -36,22 +34,19 @@
             <li class="xmt-file">contactus.xml</li>
         </ul>
     </li>
-    <li class="xmt-folder">Snippets</li>
-    <li>
+   <li class="xmt-folder">Snippets 
         <ul>
             <li class="xmt-file">adsblock.xml</li>
         </ul>
     </li>
-    <li class="xmt-folder">Sections</li>
-    <li>
+    <li class="xmt-folder">Sections 
         <ul>
             <li class="xmt-file">collections.xml</li>
             <li class="xmt-file">product.grid.xml</li>
             <li class="xmt-file">page.grid.xml</li>
         </ul>
     </li>
-    <li class="xmt-folder">Assets</li>
-    <li>
+    <li class="xmt-folder">Assets 
         <ul>
             <li class="xmt-file">style.css</li>
             <li class="xmt-file">app.js</li>

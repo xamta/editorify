@@ -2,6 +2,7 @@ var Widget = Backbone.View.extend({
     //className: 'editorify',
     initialize: function(option){
         console.log("widget option data: ", option || {});
+        this.title = "India Theme";
         this.render(); // render template
         this.bindEditor();
     },
@@ -19,13 +20,27 @@ var Widget = Backbone.View.extend({
         this.editor.session.setMode("ace/mode/javascript");
     },
     dataSource: function(){
-        var data = {};
+        var data = {'theme': 'India Theme', folders: [{'id': 1, 'name':'Layout', files : [
+              {'id': 1, 'name':'Layout.xml', type:''},
+            
+            
+            ]}] };
+
         return data;
     },
     file_selected: function(){
          this.editor.setValue("the new text here");
          //this.editor.session.setMode("ace/mode/css");
          this.editor.session.setMode("ace/mode/xml");
+    },
+    create_file: function(){
+
+    },
+    unlink_file: function(){
+        
+    },
+    upload_file: function(){
+        
     },
     warn: function(){
       // throw Error("Great Error Message.");
@@ -53,8 +68,7 @@ engine.add_template('./src/templates/templates.xml', function(err) {
            var input = new Widget({el:$("#editorify")});
            input.$el.appendTo($("#box1"));
           
-           
-            console.log(engine.render('xbox'));
+           // console.log(engine.render('xbox'));
        });
     }
 });
