@@ -4,17 +4,24 @@ var Widget = Backbone.View.extend({
     initialize: function(option){
         console.log("widget option data: ", option || {});
         this.render(); // render template
-        this.editor = ace.edit("xmt-editor-content");
-        this.editor.setTheme("ace/theme/monokai");
-        this.editor.session.setMode("ace/mode/javascript");
+        this.bindEditor();
     },
     render: function(){
-       this.$el.html(engine.render('left-tree'));
+       this.$el.html(engine.render('editorify-panel', this.dataSource()));
        return this;
     },
     events: {
       "click h1": "warn",
       "click .xmt-file": "file_selected",
+    },
+    bindEditor: function(){
+        this.editor = ace.edit("xmt-editor-content");
+        this.editor.setTheme("ace/theme/monokai");
+        this.editor.session.setMode("ace/mode/javascript");
+    },
+    dataSource: function(){
+        var data = {};
+        return data;
     },
     file_selected: function(){
          this.editor.setValue("the new text here");

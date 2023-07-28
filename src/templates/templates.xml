@@ -14,7 +14,7 @@
   <div id="table"  class="row-fluid well viewpanel" >TABLE</div>
 </t>
 
-<t t-name="left-tree">
+<t t-name="editorify-panel">
 <div class="left-tree">
 <ul>
     <li class="xmt-folder">Layouts</li>
