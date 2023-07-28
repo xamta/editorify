@@ -1,0 +1,36 @@
+
+.xmt-folder{
+    color: black;
+    cursor: pointer; 
+}
+
+.xmt-file{
+    color: gray;
+    cursor: pointer;
+}
+
+
+.left-tree {
+    display: inline-block;
+    max-width: 200px;
+    vertical-align: top;
+}
+.right-tree {
+    display: inline-block;
+    vertical-align: top;
+    width: 80%;
+}
+
+#xmt-editor .save{
+  cursor: pointer;
+  background: green;
+  padding: 5px;
+  float: right;
+  color: white;
+}
+
+#xmt-editor-content { 
+    min-height: 400px;
+    min-width: 100%;
+     
+}

@@ -1,4 +1,3 @@
-
 var Widget = Backbone.View.extend({
     //className: 'editorify',
     initialize: function(option){
